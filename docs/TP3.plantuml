@@ -1,0 +1,68 @@
+@startuml
+class PizzaTestDrive{
++{static}void main(String[] args)
+}
+PizzaTestDrive ..>Pizza
+PizzaTestDrive ..> PizzeriaFactory
+
+abstract class Pizza{
+#String name
+#String crust
+#String sauce
+#ArrayList<String> garnitures
++void prepare()
++void bake()
++void cut()
++void wrap()
++String getName()
+}
+class PizzaCheeseStyleBrest extends Pizza{
++PizzaCheeseStyleBrest()
+}
+class PizzaCheeseStyleStrasbourg extends Pizza{
++PizzaCheeseStyleStrasbourg()
+}
+abstract class PizzaFactory{
++{abstract}Pizza create(String name)
+}
+class PizzaFactoryBrest extends PizzaFactory{
++Pizza create(String name)
+}
+class PizzaFactoryStrasbourg extends PizzaFactory{
++Pizza create(String name)
+}
+class PizzaGrecqueStyleBrest extends Pizza{
++PizzaGrecqueStyleBrest()
+}
+class PizzaGrecqueStyleStrasbourg extends Pizza{
++PizzaGrecqueStyleStrasbourg()
+}
+class PizzaPoivronsStyleBrest extends Pizza{
++PizzaPoivronsStyleBrest()
+}
+class PizzaPoivronsStyleStrasbourg extends Pizza{
++PizzaPoivronsStyleStrasbourg()
+}
+Pizzeria --> PizzaFactory
+PizzaFactory ..> Pizza
+
+abstract class Pizzeria{
++Pizza orderPizza(String type)
++Pizzeria(PizzaFactory pizzaFactory)
+#Pizza createPizza(String type)
+}
+class PizzeriaBrest extends Pizzeria{
++PizzeriaBrest()
+}
+class PizzeriaStrasbourg extends Pizzeria{
++PizzeriaStrasbourg()
+}
+class PizzeriaFactory{
+~{static}PizzeriaFactory uniqueInstance
+-PizzeriaFactory()
++{static}PizzeriaFactory getInstance()
++PizzeriaFactory create(String name)
+}
+Pizzeria ..>Pizza
+PizzeriaFactory ..> Pizzeria
+@enduml
